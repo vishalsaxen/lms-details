@@ -198,7 +198,7 @@ button:hover { background: #f3e8ff; }
 
   <form id="vendorForm">
     <input type="hidden" name="_subject" value="LMS Vendor Evaluation Questionnaire Response">
-    <input type="hidden" name="_cc" value="vishal@ducisgroup.com">
+    <input type="hidden" name="_cc" value="smohal@ducisgroup.com">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
 
@@ -680,20 +680,35 @@ form.addEventListener('submit', async function(e) {
       }
     });
 
-    const result = await response.json();
+    let result = null;
+    try {
+      result = await response.json();
+    } catch (parseErr) {
+      // Response wasn't JSON (e.g. an HTML error page) - fall through with result = null
+    }
 
-    if (response.ok && (result.success === true || result.success === 'true')) {
+    if (response.ok && result && (result.success === true || result.success === 'true')) {
       statusBox.textContent = 'Thank you. Your responses have been submitted successfully.';
       statusBox.style.color = '#15803d';
       form.reset();
       toggleAll(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      throw new Error('Submission failed');
+      const serverMessage = (result && (result.message || result.error)) || null;
+      if (!response.ok && response.status === 403) {
+        statusBox.textContent =
+          'This email address has not been activated yet. Check the inbox for a FormSubmit confirmation email, click the link inside it, then try submitting again.';
+      } else if (serverMessage) {
+        statusBox.textContent = 'Submission failed: ' + serverMessage;
+      } else {
+        statusBox.textContent =
+          'Submission failed (server responded with status ' + response.status + '). If this keeps happening, check that the FormSubmit confirmation email was activated.';
+      }
+      statusBox.style.color = '#b91c1c';
     }
   } catch (error) {
     statusBox.textContent =
-      'We could not submit the questionnaire. Please check your internet connection and try again.';
+      'We could not reach the submission service. Please check your internet connection and try again.';
     statusBox.style.color = '#b91c1c';
   } finally {
     submitBtn.disabled = false;
