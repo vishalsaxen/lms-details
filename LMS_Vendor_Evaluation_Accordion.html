@@ -1,1 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMS Vendor Evaluation Questionnaire</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 28px 16px 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f3fb;
+  color: #172554;
+}
+.container { max-width: 1050px; margin: 0 auto; }
+h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  color: #172554;
+}
+.subtitle {
+  margin: 8px auto 24px;
+  max-width: 800px;
+  text-align: center;
+  color: #64748b;
+  line-height: 1.5;
+}
+.vendor-card {
+  background: #fff;
+  border: 1px solid #ddd6fe;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(30,27,75,.06);
+}
+.vendor-card h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  color: #4c1d95;
+}
+.vendor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #334155;
+}
+input, textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 11px;
+  font: inherit;
+  color: #0f172a;
+  background: #fff;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+}
+.accordion {
+  background: #fff;
+  border: 1px solid #ddd6fe;
+  border-radius: 12px;
+  margin: 12px 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(30,27,75,.05);
+}
+summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 17px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: #4c1d95;
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+}
+summary::-webkit-details-marker { display:none; }
+.accordion[open] summary { background: #5b21b6; }
+.chevron {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform .2s ease;
+}
+.accordion[open] .chevron { transform: rotate(45deg); }
+.content { padding: 18px 20px 20px; }
+.question {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+  background: #fafafa;
+}
+.question label {
+  display: flex;
+  gap: 10px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+.q-number {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ede9fe;
+  color: #5b21b6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.question textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+button {
+  border: 1px solid #c4b5fd;
+  background: white;
+  color: #4c1d95;
+  padding: 9px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+}
+button:hover { background: #f3e8ff; }
+.submit-area {
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid #ddd6fe;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+.submit-btn {
+  background: #4c1d95;
+  color: #fff;
+  border: none;
+  min-width: 190px;
+  padding: 13px 22px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.submit-btn:hover { background: #5b21b6; }
+.submit-btn:disabled { opacity: .6; cursor: wait; }
+.status {
+  margin-top: 12px;
+  font-weight: 600;
+  min-height: 22px;
+}
+.note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+@media (max-width: 700px) {
+  .vendor-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 24px; }
+  summary { font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>LMS Vendor Evaluation Questionnaire</h1>
+  <p class="subtitle">
+    Please review each evaluation area and enter your thoughts or responses against each question.
+    Click a section to expand or collapse its sub-points.
+  </p>
+
+  <form id="vendorForm">
+    <input type="hidden" name="_subject" value="LMS Vendor Evaluation Questionnaire Response">
+    <input type="hidden" name="_cc" value="vishal@ducisgroup.com">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <div class="vendor-card">
+      <h2>Vendor Information</h2>
+      <div class="vendor-grid">
+        <div class="field">
+          <label for="vendor_name">Your Name</label>
+          <input id="vendor_name" name="Vendor Name" required>
+        </div>
+        <div class="field">
+          <label for="vendor_company">Company</label>
+          <input id="vendor_company" name="Company" required>
+        </div>
+        <div class="field">
+          <label for="vendor_email">Email</label>
+          <input id="vendor_email" name="Vendor Email" type="email" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="button" onclick="toggleAll(true)">Expand all</button>
+      <button type="button" onclick="toggleAll(false)">Collapse all</button>
+    </div>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">1. Platform Fit &amp; Functional Requirements</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>Does the LMS support blended learning (instructor-led, virtual, e-learning, on-the-job) natively?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Is the platform SCORM 1.2 / SCORM 2004 / xAPI (Tin Can) / cmi5 compliant?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Can it support multi-language content and interfaces (relevant for our regional/localized rollouts)?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Does it support mobile learning (native app or responsive) with offline access?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Can it handle certifications, compliance training, and expiry/renewal tracking?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>Does it support social/collaborative learning (forums, cohorts, peer review)?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">7</span>Can content be authored in-platform, or does it require third-party authoring tools?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q7" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">8</span>Does it support Kirkpatrick&#x27;s 4-level evaluation model (Reaction, Learning, Behavior, Results) for measuring training effectiveness?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q8" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">9</span>Can it accommodate other evaluation frameworks (e.g., Phillips ROI, CIPP, Kaufman&#x27;s Five Levels) if we adopt one in future?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q9" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">10</span>Does it support pre-assessment and post-assessment pairing to measure learning gain for a course?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q10" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">11</span>Can exams/assessments include randomized question pools, question banks, and configurable pass criteria?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q11" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">12</span>Does it support proctoring or anti-cheating controls (time limits, lockdown browser, attempt limits) for exams?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q12" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">13</span>Can assessment results feed into Kirkpatrick Level 2 (Learning) reporting automatically?</label>
+          <textarea name="1. Platform Fit &amp; Functional Requirements - Q13" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">2. Integration &amp; Technical Architecture</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>Does it offer a documented, stable API (REST/SOAP) for integration with HRIS, CRM, or SSO systems?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>What SSO protocols are supported (SAML 2.0, OAuth, OpenID Connect)?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Can it integrate with our content authoring tools (Articulate, Captivate, Adobe AEM)?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Does it offer native or API-based integration with Vimeo for hosting and streaming video content?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>If Vimeo integration isn&#x27;t native, can it be built via API/webhook, and who owns that build — vendor or us?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>Can Vimeo videos carry tracking data back to the LMS (view %, completion) rather than just embedding?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">7</span>Does it support payment gateway integration (e.g., Stripe, PayPal, Telr, Network International, or other UAE-compliant gateways) for paid courses?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q7" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">8</span>Is the payment integration PCI-DSS compliant, and who is liable for payment data security — vendor or gateway provider?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q8" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">9</span>What currencies and payment methods (card, Apple Pay, local bank transfer) are supported for UAE learners?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q9" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">10</span>Does it support automated refunds/chargebacks through the same gateway integration?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q10" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">11</span>On successful purchase/enrollment, does the system automatically send a confirmation email to both Ducis (admin) and the learner, and can the email template/branding be customized?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q11" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">12</span>Can failed payment attempts also trigger a notification (to admin and/or learner) so issues are caught immediately?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q12" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">13</span>Is the integration architecture flexible enough to add other third-party tools/models later without a re-platform (e.g., new video host, new evaluation framework, new authoring tool, new payment gateway)?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q13" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">14</span>Is it cloud-hosted (SaaS) or on-premise, and what are the hosting/data-residency options?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q14" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">15</span>What is the system&#x27;s uptime SLA, and is there a public status page for outages?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q15" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">16</span>How does the platform handle scaling — number of concurrent users, storage limits, bandwidth?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q16" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">17</span>Has the vendor load-tested the platform for at least 200 concurrent users, and can they share the load test report/results?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q17" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">18</span>What is the guaranteed performance (page load time, video streaming, exam submission) under 200 concurrent users?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q18" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">19</span>Will the vendor commit in writing (SLA) to this concurrency level, and what remediation applies if performance degrades under load?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q19" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">20</span>What browsers/devices are officially supported, and what is the patch/update cycle?</label>
+          <textarea name="2. Integration &amp; Technical Architecture - Q20" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">3. Data Security, Privacy &amp; Compliance</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>Where is data hosted, and does it comply with regional data protection laws (e.g., UAE PDPL, GDPR)?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Is the vendor ISO 27001 / SOC 2 certified, and can they provide the audit report?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>What is the data encryption standard (at rest and in transit)?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>What is the data backup and disaster recovery policy (RTO/RPO)?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Who owns the data, and what is the data export/portability process if we leave the platform?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>What happens to our data upon contract termination — deletion timeline and certification?</label>
+          <textarea name="3. Data Security, Privacy &amp; Compliance - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">4. Reporting &amp; Analytics</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>What out-of-the-box reports are available (completion, compliance, engagement, ROI)?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Can we build custom reports/dashboards without vendor involvement?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Does it support scheduled/automated report distribution to stakeholders?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Can data be exported to Excel/BI tools (Power BI, Tableau) or via API?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Does it provide learning analytics beyond completion (time spent, assessment scores, drop-off points)?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>What is the full list of standard reports the LMS can generate (compliance, completion, exam scores, video engagement, Vimeo playback stats)?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">7</span>Does the system maintain a log/audit trail of every SCORM package upload — who uploaded, version, timestamp, and replaced/superseded files?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q7" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">8</span>Can we roll back to a previous SCORM version if a new upload breaks tracking, and is prior learner data preserved?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q8" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">9</span>Does it validate SCORM packages on upload and flag errors before they go live to learners?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q9" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">10</span>Can pre/post assessment score comparisons be pulled as a standalone report per learner, per cohort, and per course?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q10" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">11</span>Does the LMS provide a revenue dashboard/report showing income from paid courses, broken down by course, cohort, or time period?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q11" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">12</span>Can it show profit/loss to Ducis — i.e., revenue collected minus payment gateway fees, refunds, and any vendor revenue-share?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q12" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">13</span>Can financial reports be exported/reconciled against the payment gateway&#x27;s own settlement reports?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q13" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">14</span>Who has access to revenue/financial data within the LMS, and can this be restricted to specific admin roles?</label>
+          <textarea name="4. Reporting &amp; Analytics - Q14" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">5. Administration &amp; Usability</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>How is user provisioning handled — manual, bulk upload, or automated sync via HRIS/SSO?</label>
+          <textarea name="5. Administration &amp; Usability - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Can roles and permissions be granularly configured (admin, manager, instructor, learner)?</label>
+          <textarea name="5. Administration &amp; Usability - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>How easy is it to configure learning paths, curricula, and automated enrollment rules?</label>
+          <textarea name="5. Administration &amp; Usability - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Is there a sandbox/UAT environment separate from production for testing changes?</label>
+          <textarea name="5. Administration &amp; Usability - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>How much admin work requires vendor support vs. self-service configuration?</label>
+          <textarea name="5. Administration &amp; Usability - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>What does the admin console/back-end look like — can we get a live demo, not just a sales deck?</label>
+          <textarea name="5. Administration &amp; Usability - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">6. Vendor Support &amp; SLA</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>What support tiers are offered (email, chat, phone, dedicated account manager)?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>What are the guaranteed response/resolution times for critical, high, and low priority issues?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Is support available in our required time zones/business hours?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Is there a dedicated Customer Success Manager, and what does onboarding look like?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Can we speak to 2–3 reference clients of similar size/industry?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>How frequently is the platform updated, and how are we notified of upcoming changes?</label>
+          <textarea name="6. Vendor Support &amp; SLA - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">7. Implementation &amp; Migration</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>What is the typical implementation timeline for an organization of our size?</label>
+          <textarea name="7. Implementation &amp; Migration - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Will the vendor assist with data migration (users, course history, certificates) from our current LMS?</label>
+          <textarea name="7. Implementation &amp; Migration - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Who is responsible for content migration and re-testing SCORM packages post-migration?</label>
+          <textarea name="7. Implementation &amp; Migration - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>What is included in onboarding — training for admins, train-the-trainer sessions, documentation?</label>
+          <textarea name="7. Implementation &amp; Migration - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Is there a phased rollout / pilot option before full go-live?</label>
+          <textarea name="7. Implementation &amp; Migration - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>Will the platform run on a custom domain/URL, and does the vendor provide it or do we need to procure and provide our own?</label>
+          <textarea name="7. Implementation &amp; Migration - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">7</span>Can we apply our own branding (logo, colors, favicon) to the login page and portal, or is this vendor-managed?</label>
+          <textarea name="7. Implementation &amp; Migration - Q7" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">8</span>If we provide the domain, what DNS/SSL setup is required on our end, and who owns the SSL certificate renewal?</label>
+          <textarea name="7. Implementation &amp; Migration - Q8" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">8. Commercial Terms</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>What is the pricing model — per active user, per registered user, tiered, or flat fee?</label>
+          <textarea name="8. Commercial Terms - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>Are there separate costs for storage, support tiers, API access, or additional admin seats?</label>
+          <textarea name="8. Commercial Terms - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>What is the contract length, and what are the terms for renewal and price increases?</label>
+          <textarea name="8. Commercial Terms - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>Are there penalties or fees for early termination or downsizing user count?</label>
+          <textarea name="8. Commercial Terms - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">5</span>Is there a free trial, pilot period, or money-back guarantee?</label>
+          <textarea name="8. Commercial Terms - Q5" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">6</span>What is NOT included in the base price (e.g., custom integrations, premium support, extra storage)?</label>
+          <textarea name="8. Commercial Terms - Q6" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary>
+        <span class="section-title">9. Roadmap &amp; Longevity</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <div class="question">
+          <label><span class="q-number">1</span>What is the vendor&#x27;s product roadmap for the next 12–24 months?</label>
+          <textarea name="9. Roadmap &amp; Longevity - Q1" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">2</span>How long has the vendor been in business, and what is their client retention rate?</label>
+          <textarea name="9. Roadmap &amp; Longevity - Q2" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">3</span>Is the vendor financially stable (especially relevant for smaller/newer LMS providers)?</label>
+          <textarea name="9. Roadmap &amp; Longevity - Q3" placeholder="Enter your response here"></textarea>
+        </div>
+        <div class="question">
+          <label><span class="q-number">4</span>How do they gather and act on customer feedback for feature requests?</label>
+          <textarea name="9. Roadmap &amp; Longevity - Q4" placeholder="Enter your response here"></textarea>
+        </div>
+      </div>
+    </details>
+
+    <div class="submit-area">
+      <button class="submit-btn" id="submitBtn" type="submit">Submit Questionnaire</button>
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="note">
+        Your responses will be submitted to the LMS evaluation team.
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+function toggleAll(open) {
+  document.querySelectorAll('.accordion').forEach(item => item.open = open);
+}
+
+const form = document.getElementById('vendorForm');
+const statusBox = document.getElementById('status');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  statusBox.textContent = '';
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/vishal@ducisgroup.com', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    const result = await response.json();
+
+    if (response.ok && (result.success === true || result.success === 'true')) {
+      statusBox.textContent = 'Thank you. Your responses have been submitted successfully.';
+      statusBox.style.color = '#15803d';
+      form.reset();
+      toggleAll(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (error) {
+    statusBox.textContent =
+      'We could not submit the questionnaire. Please check your internet connection and try again.';
+    statusBox.style.color = '#b91c1c';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Questionnaire';
+  }
+});
+</script>
+</body>
+</html>
 
