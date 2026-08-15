@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMS Vendor Evaluation Questionnaire</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f3fb;
+    color: #172554;
+  }
+  .container {
+    max-width: 1000px;
+    margin: auto;
+  }
+  h1 {
+    margin: 0 0 8px;
+    text-align: center;
+    color: #172554;
+    font-size: 30px;
+  }
+  .subtitle {
+    margin: 0 0 28px;
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+  }
+  .accordion {
+    background: #fff;
+    border: 1px solid #ddd6fe;
+    border-radius: 12px;
+    margin: 12px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(30, 27, 75, .06);
+  }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #4c1d95;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .accordion[open] summary {
+    background: #5b21b6;
+  }
+  .chevron {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform .2s ease;
+  }
+  .accordion[open] .chevron {
+    transform: rotate(45deg);
+  }
+  .content {
+    padding: 18px 24px 20px;
+    background: white;
+  }
+  .intro {
+    margin: 0 0 14px;
+    color: #475569;
+    font-style: italic;
+    line-height: 1.55;
+  }
+  ul {
+    margin: 0;
+    padding-left: 24px;
+  }
+  li {
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #1e293b;
+  }
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  button {
+    border: 1px solid #c4b5fd;
+    background: white;
+    color: #4c1d95;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button:hover { background: #f3e8ff; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>LMS Vendor Evaluation Questionnaire</h1>
+  <p class="subtitle">Click a main point to expand or collapse its sub-points.</p>
+
+  <div class="controls">
+    <button onclick="toggleAll(true)">Expand all</button>
+    <button onclick="toggleAll(false)">Collapse all</button>
+  </div>
+
+  
+    <details class="accordion" open>
+      <summary>
+        <span class="section-title">1. Platform Fit &amp; Functional Requirements</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">Can assessment results feed into Kirkpatrick Level 2 (Learning) reporting automatically?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">2. Integration &amp; Technical Architecture</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">What browsers/devices are officially supported, and what is the patch/update cycle?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">3. Data Security, Privacy &amp; Compliance</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">What happens to our data upon contract termination — deletion timeline and certification?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">4. Reporting &amp; Analytics</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">Who has access to revenue/financial data within the LMS, and can this be restricted to specific admin roles?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">5. Administration &amp; Usability</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">What does the admin console/back-end look like — can we get a live demo, not just a sales deck?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">6. Vendor Support &amp; SLA</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">How frequently is the platform updated, and how are we notified of upcoming changes?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">7. Implementation &amp; Migration</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">If we provide the domain, what DNS/SSL setup is required on our end, and who owns the SSL certificate renewal?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">8. Commercial Terms</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">What is NOT included in the base price (e.g., custom integrations, premium support, extra storage)?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+    <details class="accordion" >
+      <summary>
+        <span class="section-title">9. Roadmap &amp; Longevity</span>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="content">
+        <p class="intro">How do they gather and act on customer feedback for feature requests?</p>
+        <ul></ul>
+      </div>
+    </details>
+    
+</div>
+
+<script>
+function toggleAll(open) {
+  document.querySelectorAll('.accordion').forEach(item => item.open = open);
+}
+</script>
+</body>
+</html>
